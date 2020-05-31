@@ -20,6 +20,7 @@ app.get('/api/getResumeById/:id', services.getResumeById);
 
 app.get('/api/getResumeByName/:name', services.getResumeByName);
 
+app.get('/api/getAllResumes', services.getAllResumes);
 
 app.listen(port, function () {
     console.log("Server listening on port " + port);

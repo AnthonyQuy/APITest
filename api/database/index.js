@@ -96,3 +96,18 @@ exports.getResumeByNameRegex = regex => {
     })
   })
 }
+
+
+
+exports.getAllResumes = () => {
+  return new Promise((resolve, reject) => {
+    MongoClient.connect(url, { useUnifiedTopology: true }).then(client => {
+      const result = client.db(dbName).collection(resumeCollection).find().toArray();
+      client.close();
+      resolve(result);
+    }).catch(err => {
+      console.error(err)
+      reject(new Error(err))
+    })
+  })
+}
