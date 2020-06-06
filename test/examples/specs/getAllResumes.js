@@ -1,16 +1,15 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 
-import { getAllResumes } from '../../api/database'
+import { getAllResumes } from '../database'
 
-var expect = chai.expect;
+let expect = chai.expect;
 
 chai.use(chaiHttp);
 
 describe('Test getAllResumes endpoint', function () {
     beforeEach(function () {
     });
-
     describe('Using valid request', function () {
         it('it should return 200 response', function (done) {
             chai.request("http://localhost:4000")

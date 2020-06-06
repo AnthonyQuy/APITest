@@ -1,0 +1,17 @@
+{
+  "name": "api-test-example",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "../bin/runner.js"
+  },
+  "dependencies": {
+    "@babel/register": "^7.9.0",
+    "@wdio/sync": "^6.1.8",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "mongodb": "^3.5.8"
+  },
+  "author": "",
+  "license": "ISC"
+}
