@@ -68,20 +68,12 @@ exports.insertResume = resume => {
   })
 }
 
-exports.getResumeById = id => {
-  return new Promise((resolve, reject) => {
-    MongoClient.connect(url, { useUnifiedTopology: true }).then(client => {
-      client.db(dbName).collection(resumeCollection).findOne({ '_id': MongoDB.ObjectID(id) }).then(res => {
-        client.close();
-        resolve(res);
-      }).catch(err => {
-        reject(err);
-      })
-    }).catch(err => {
-      reject(err);
-    })
-  })
-}
+exports.getResumeById = async function(id) {
+  let client = await MongoClient.connect(url, { useUnifiedTopology: true })
+  let result = await client.db(dbName).collection(resumeCollection).findOne({ '_id': MongoDB.ObjectID(id) });
+  client.close();
+  return result;
+};
 
 
 exports.getResumeByNameRegex = regex => {
@@ -97,18 +89,9 @@ exports.getResumeByNameRegex = regex => {
   })
 }
 
-
-
-exports.getAllResumes = () => {
-  return new Promise((resolve, reject) => {
-    MongoClient.connect(url, { useUnifiedTopology: true }).then(client => {
-      const result = client.db(dbName).collection(resumeCollection).find().toArray();
-      client.close();
-      setTimeout(() => { resolve(result) }, 3000)
-
-    }).catch(err => {
-      console.error(err)
-      reject(new Error(err))
-    })
-  })
+exports.getAllResumes = async () => {
+  let client = await MongoClient.connect(url, { useUnifiedTopology: true });
+  const result = await client.db(dbName).collection(resumeCollection).find().toArray();
+  client.close();
+  return result;
 }
