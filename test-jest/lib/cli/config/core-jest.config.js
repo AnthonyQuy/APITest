@@ -18,14 +18,26 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var figlet = __importStar(require("figlet"));
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+var jest_config_1 = require("jest-config");
+var configLoader_1 = __importDefault(require("../configLoader"));
+var argLoader_1 = __importDefault(require("../argLoader"));
 var path = __importStar(require("path"));
-var jest = __importStar(require("jest"));
-var configPath = path.resolve(__dirname, "../../lib/cli/config/core-jest.config.js");
-console.log(figlet.textSync("Contour-BET", {
-    font: "slant",
-    horizontalLayout: "default",
-    verticalLayout: "default"
-}));
-jest.run(["--config", configPath]);
+configLoader_1.default(argLoader_1.default());
+var config = JSON.parse(JSON.stringify(jest_config_1.defaults));
+config.rootDir = path.resolve(process.cwd(), "./");
+config.reporters = [
+    "default",
+    [
+        //https://www.npmjs.com/package/jest-html-reporter
+        "./node_modules/jest-html-reporter",
+        {
+            pageTitle: "Test Report",
+            outputPath: "./report/result.html",
+        },
+    ],
+];
+config.testMatch = ["**/?(*.)+(spec|test).[tj]s?(x)"];
+module.exports = config;

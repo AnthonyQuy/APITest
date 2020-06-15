@@ -19,13 +19,13 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var figlet = __importStar(require("figlet"));
-var path = __importStar(require("path"));
-var jest = __importStar(require("jest"));
-var configPath = path.resolve(__dirname, "../../lib/cli/config/core-jest.config.js");
-console.log(figlet.textSync("Contour-BET", {
-    font: "slant",
-    horizontalLayout: "default",
-    verticalLayout: "default"
-}));
-jest.run(["--config", configPath]);
+var yargs = __importStar(require("yargs"));
+exports.default = (function () {
+    var opts = {
+        config: {
+            alias: "c",
+            describe: "Path for the test run config"
+        }
+    };
+    return yargs.option(opts).demandOption("config").help().argv;
+});

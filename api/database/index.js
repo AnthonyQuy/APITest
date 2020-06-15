@@ -104,7 +104,7 @@ exports.getAllResumes = () => {
     MongoClient.connect(url, { useUnifiedTopology: true }).then(client => {
       const result = client.db(dbName).collection(resumeCollection).find().toArray();
       client.close();
-      setTimeout(() => { resolve(result) }, 3000)
+      setTimeout(() => { resolve(result) }, 1000)
 
     }).catch(err => {
       console.error(err)

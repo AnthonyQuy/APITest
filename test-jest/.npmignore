@@ -1,0 +1,9 @@
+src
+sample
+.*
+tsconfig.json
+generate-report.sh
+bitbucket-pipelines.yml
+!lib
+!bin
+pipeline-scripts 

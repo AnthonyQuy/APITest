@@ -1,0 +1,14 @@
+{
+  "name": "contour-jest",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "../bin/runner.js  -c ./myconfig.js"
+  },
+  "dependencies": {
+    "@babel/register": "^7.9.0",
+    "@wdio/sync": "^6.1.8"
+  },
+  "author": "",
+  "license": "ISC"
+}
